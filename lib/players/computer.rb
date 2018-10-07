@@ -10,17 +10,32 @@ module Players
           when 0
               new_move = corners.sample.to_s
           when 1
-              if board.cells[4] == " "
-                new_move = "5"
-              else
+              if board.cells[4] != " "
                 new_move = corners.sample.to_s
+              else
+                new_move = "5"
               end
           else
+
+
             new_move = corners.sample
             new_move = middles.sample unless corners.any?{|x| board.cells[x.to_i - 1] == " "}
         end
         # binding.pry
       board = new_move
+    end
+
+    def opposite_corner(corner)
+      case corner
+      when "1"
+        return "9"
+      when "3"
+        return "7"
+      when "7"
+        return "3"
+      when "9"
+        return "1"
+      end
     end
 
   end
